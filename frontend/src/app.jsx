@@ -133,7 +133,7 @@ export default function App() {
       controller = new AbortController();
       timeout = setTimeout(() => controller.abort(), 3000);
       try {
-        const response = await fetch("http://127.0.0.1:8000/", {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/chat/`, {
           signal: controller.signal,
         });
         if (mounted) setBackendStatus(response.ok ? "connected" : "offline");
@@ -463,7 +463,7 @@ export default function App() {
 
         <label className="conversation-search">
           <Icon name="search" size={16} />
-          <input aria-label="Search conversations" value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Search conversations" />
+          <input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Search conversations" />
           <kbd>/</kbd>
         </label>
 
